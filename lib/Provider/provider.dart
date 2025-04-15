@@ -48,4 +48,14 @@ class TaskProvider extends ChangeNotifier{
     notifyListeners();
   }
 
+  void updateTask(Task updatedTask) async {
+    final index = _tasks.indexWhere((task) => task.id == updatedTask.id);
+    if (index != -1) {
+      _tasks[index] = updatedTask;
+      await saveTask();
+      notifyListeners();
+    }
+  }
+
+
 }
